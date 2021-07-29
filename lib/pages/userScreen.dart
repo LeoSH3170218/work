@@ -58,23 +58,25 @@ class _UserScreenState extends State<UserScreen> {
               if (snapShot.data != null) {
                 //print(snapShot.data['users'][0]['photo']);
                 return ListView.builder(itemBuilder: (_, index) {
-                  return ListTile(
-                    leading: CircleAvatar(
-                      backgroundImage:
-                          NetworkImage(snapShot.data['users'][index]['photo']),
+                  return Container(
+                    padding: EdgeInsets.only(bottom: 10),
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        backgroundImage: NetworkImage(
+                            "https://ribsandburgers.com/au/wp-content/uploads/2019/03/2-angus-bacon-and-cheese.jpg"),
+                      ),
+                      title: Text(snapShot.data['users'][index]['first_name'] +
+                          " " +
+                          snapShot.data['users'][index]['last_name']),
+                      subtitle: Text("email: " +
+                          snapShot.data['users'][index]['email'] +
+                          " \ntitle: " +
+                          snapShot.data['users'][index]['title'] +
+                          "\nJob Type: " +
+                          snapShot.data['users'][index]['job_type'] +
+                          "\nMobile: " +
+                          snapShot.data['users'][index]['mobile']),
                     ),
-                    title: Text(snapShot.data['users'][index]['first_name'] +
-                        " " +
-                        snapShot.data['users'][index]['last_name']),
-                    subtitle: Text("email: " +
-                        snapShot.data['users'][index]['email'] +
-                        " \ntitle: " +
-                        snapShot.data['users'][index]['title'] +
-                        "\nJob Type: " +
-                        snapShot.data['users'][index]['job_type'] +
-                        "\nMobile: " +
-                        snapShot.data['users'][index]['mobile']),
-
                   );
                 });
               } else {
