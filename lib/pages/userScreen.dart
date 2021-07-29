@@ -17,20 +17,9 @@ class _UserScreenState extends State<UserScreen> {
     final String url =
         "https://fakemyapi.com/api/fake?id=3757e010-c20c-4820-b006-ddf44da88a77";
     http.Response response = await http.get(Uri.parse(url));
-    print("nothing");
     if (response.statusCode == 200) {
       var users = json.decode(response.body);
 
-      //print(users['users'][0]['photo']);
-      // for(final i in users){
-      //   print(i.firstName);
-      //   print(i.lastName);
-      //   print(i.imageUrl);
-      //   print(i.email);
-      //   print(i.title);
-      //   print(i.jobType);
-      //   print(i.mobile);
-      // }
       return users;
     }
   }
@@ -56,26 +45,44 @@ class _UserScreenState extends State<UserScreen> {
               return CircularProgressIndicator();
             } else {
               if (snapShot.data != null) {
-                //print(snapShot.data['users'][0]['photo']);
-                return ListView.builder(itemBuilder: (_, index) {
+                return ListView.builder(
+                    itemBuilder: (_, index) {
                   return Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey),
+                    ),
                     padding: EdgeInsets.only(bottom: 10),
                     child: ListTile(
                       leading: CircleAvatar(
-                        backgroundImage: NetworkImage(
-                            "https://ribsandburgers.com/au/wp-content/uploads/2019/03/2-angus-bacon-and-cheese.jpg"),
+                        backgroundImage:
+                            NetworkImage("https://ribsandburgers.com"
+                                "/au/wp-content/uploads/2019/03/"
+                                "2-angus-bacon-and-cheese.jpg"),
                       ),
-                      title: Text(snapShot.data['users'][index]['first_name'] +
-                          " " +
-                          snapShot.data['users'][index]['last_name']),
-                      subtitle: Text("email: " +
-                          snapShot.data['users'][index]['email'] +
-                          " \ntitle: " +
-                          snapShot.data['users'][index]['title'] +
-                          "\nJob Type: " +
-                          snapShot.data['users'][index]['job_type'] +
-                          "\nMobile: " +
-                          snapShot.data['users'][index]['mobile']),
+                      title: Text(
+                        snapShot.data['users'][index]['first_name'] + " " +
+                            snapShot.data['users'][index]['last_name'],
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18
+                        ),
+                      ),
+
+                      subtitle: Text(
+                        "email: " +
+                            snapShot.data['users'][index]['email'] +
+                        " \ntitle: " +
+                            snapShot.data['users'][index]['title'] +
+                        "\nJob Type: " +
+                            snapShot.data['users'][index]['job_type'] +
+                        "\nMobile: " +
+                            snapShot.data['users'][index]['mobile'],
+                        style: TextStyle(
+                            height: 1.4,
+                            fontSize: 15
+                        ),
+                      ),
+
                     ),
                   );
                 });
