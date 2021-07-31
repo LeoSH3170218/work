@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData.dark(),
       routes: {
-        MyHomePage.id : (context) => MyHomePage(),
+        MyHomePage.id : (context) => MyHomePage(title: 'Home',),
         UserScreen.id: (context) => UserScreen(),
       },
       home: MyHomePage(title: 'Home'),
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   static const String id = "HOMESCREEN";
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -64,7 +64,7 @@ class CustomButton extends StatelessWidget{
   final String text;
   final Color color;
 
-  const CustomButton({Key key, this.callback, this.text, this.color}) : super(key: key);
+  const CustomButton({Key? key, required this.callback, required this.text, required this.color}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(

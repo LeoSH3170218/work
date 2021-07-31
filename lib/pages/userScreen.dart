@@ -45,6 +45,7 @@ class _UserScreenState extends State<UserScreen> {
               return CircularProgressIndicator();
             } else {
               if (snapShot.data != null) {
+                AsyncSnapshot<Object?> x = snapShot;
                 return ListView.builder(
                     itemBuilder: (_, index) {
                   return Container(
@@ -60,8 +61,8 @@ class _UserScreenState extends State<UserScreen> {
                                 "2-angus-bacon-and-cheese.jpg"),
                       ),
                       title: Text(
-                        snapShot.data['users'][index]['first_name'] + " " +
-                            snapShot.data['users'][index]['last_name'],
+                        ((snapShot.data as dynamic)['users'][index]['first_name'] ) + " " +
+                            (snapShot.data as dynamic)['users'][index]['last_name'],
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 18
@@ -70,13 +71,13 @@ class _UserScreenState extends State<UserScreen> {
 
                       subtitle: Text(
                         "email: " +
-                            snapShot.data['users'][index]['email'] +
+                            (snapShot.data as dynamic)['users'][index]['email'] +
                         " \ntitle: " +
-                            snapShot.data['users'][index]['title'] +
+                            (snapShot.data as dynamic)['users'][index]['title'] +
                         "\nJob Type: " +
-                            snapShot.data['users'][index]['job_type'] +
+                            (snapShot.data as dynamic)['users'][index]['job_type'] +
                         "\nMobile: " +
-                            snapShot.data['users'][index]['mobile'],
+                            (snapShot.data as dynamic)['users'][index]['mobile'],
                         style: TextStyle(
                             height: 1.4,
                             fontSize: 15
@@ -106,13 +107,13 @@ class CustomListView extends StatelessWidget {
   final String mobile;
 
   const CustomListView(
-      {Key key,
-      this.image,
-      this.name,
-      this.email,
-      this.title,
-      this.jobType,
-      this.mobile})
+      {Key? key,
+      required this.image,
+      required this.name,
+      required this.email,
+      required this.title,
+      required this.jobType,
+      required this.mobile})
       : super(key: key);
 
   @override
