@@ -41,10 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
+        child:
             CustomButton(
               text: "Get User",
               callback: () {
@@ -52,9 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               color: Colors.cyan,
             ),
-          ],
         ),
-      ),
     );
   }
 }

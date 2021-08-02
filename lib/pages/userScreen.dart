@@ -11,18 +11,13 @@ class UserScreen extends StatefulWidget {
 }
 
 class _UserScreenState extends State<UserScreen> {
-  Future displayUser() async {
-    //var userApi = UserApi();
-    //var data = await userApi.getUsers();
-    final String url =
-        "https://fakemyapi.com/api/fake?id=3757e010-c20c-4820-b006-ddf44da88a77";
-    http.Response response = await http.get(Uri.parse(url));
-    if (response.statusCode == 200) {
-      var users = json.decode(response.body);
-
-      return users;
-    }
+  String stringConcatenation(String firstString, String secondString) {
+    return firstString + ": " + secondString;
   }
+  TextStyle textStyle = TextStyle(
+    fontSize: 16,
+    height: 1.2
+  );
 
   @override
   void initState() {
@@ -46,8 +41,7 @@ class _UserScreenState extends State<UserScreen> {
             } else {
               if (snapShot.data != null) {
                 AsyncSnapshot<Object?> x = snapShot;
-                return ListView.builder(
-                    itemBuilder: (_, index) {
+                return ListView.builder(itemBuilder: (_, index) {
                   return Container(
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey),
@@ -60,30 +54,67 @@ class _UserScreenState extends State<UserScreen> {
                                 "/au/wp-content/uploads/2019/03/"
                                 "2-angus-bacon-and-cheese.jpg"),
                       ),
-                      title: Text(
-                        ((snapShot.data as dynamic)['users'][index]['first_name'] ) + " " +
-                            (snapShot.data as dynamic)['users'][index]['last_name'],
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18
+                      title: Container(
+                        child: Row(
+                          children: [
+                            Text(
+                              ((snapShot.data as dynamic)['users'][index]
+                                      ['first_name']) +
+                                  " " +
+                                  (snapShot.data as dynamic)['users'][index]
+                                      ['last_name'],
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20),
+                            ),
+                          ],
                         ),
                       ),
-
-                      subtitle: Text(
-                        "email: " +
-                            (snapShot.data as dynamic)['users'][index]['email'] +
-                        " \ntitle: " +
-                            (snapShot.data as dynamic)['users'][index]['title'] +
-                        "\nJob Type: " +
-                            (snapShot.data as dynamic)['users'][index]['job_type'] +
-                        "\nMobile: " +
-                            (snapShot.data as dynamic)['users'][index]['mobile'],
-                        style: TextStyle(
-                            height: 1.4,
-                            fontSize: 15
+                      subtitle: Container(
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Text(stringConcatenation(
+                                    "email",
+                                    (snapShot.data as dynamic)['users'][index]
+                                        ['email']),
+                                  style: textStyle
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(stringConcatenation(
+                                    "title",
+                                    (snapShot.data as dynamic)['users'][index]
+                                        ['title']),
+                                  style: textStyle
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(stringConcatenation(
+                                    "Job Type",
+                                    (snapShot.data as dynamic)['users'][index]
+                                        ['job_type']),
+                                  style: textStyle
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(stringConcatenation(
+                                    "mobile",
+                                    (snapShot.data as dynamic)['users'][index]
+                                        ['mobile']),
+                                  style: textStyle
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
-
                     ),
                   );
                 });
@@ -96,34 +127,17 @@ class _UserScreenState extends State<UserScreen> {
       ),
     );
   }
-}
 
-class CustomListView extends StatelessWidget {
-  final NetworkImage image;
-  final String name;
-  final String email;
-  final String title;
-  final String jobType;
-  final String mobile;
+  Future displayUser() async {
+    //var userApi = UserApi();
+    //var data = await userApi.getUsers();
+    final String url =
+        "https://fakemyapi.com/api/fake?id=3757e010-c20c-4820-b006-ddf44da88a77";
+    http.Response response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      var users = json.decode(response.body);
 
-  const CustomListView(
-      {Key? key,
-      required this.image,
-      required this.name,
-      required this.email,
-      required this.title,
-      required this.jobType,
-      required this.mobile})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Material(
-        child: CircleAvatar(
-          backgroundImage: image,
-        ),
-      ),
-    );
+      return users;
+    }
   }
 }
