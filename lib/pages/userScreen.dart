@@ -16,7 +16,7 @@ class _UserScreenState extends State<UserScreen> {
   }
   TextStyle textStyle = TextStyle(
     fontSize: 16,
-    height: 1.2
+    height: 1.8
   );
 
   @override
