@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:task1_kamlesh/pages/userScreen.dart';
+import 'package:task1_kamlesh/pages/user_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  static const String id = "HOMESCREEN";
+  static const String id = "HOME_SCREEN";
   MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;

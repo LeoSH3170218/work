@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class UserScreen extends StatefulWidget {
-  static const String id = "USERSCREEN";
+  static const String id = "USER_SCREEN";
 
   @override
   _UserScreenState createState() => _UserScreenState();
@@ -43,27 +43,24 @@ class _UserScreenState extends State<UserScreen> {
                     padding: EdgeInsets.only(bottom: 10),
                     child: Row(
                           children: [
-                            Column(
-                              children: [
-                                SizedBox(
-                                  width: 60,
-                                ),
-                                CircleAvatar(
-                                  backgroundImage:
-                                      NetworkImage("https://ribsandburgers.com"
-                                          "/au/wp-content/uploads/2019/03/"
-                                          "2-angus-bacon-and-cheese.jpg"),
-                                ),
-                              ],
-                            ),
                             SizedBox(
-                              width: 30,
+                              width: 16,
+                            ),
+                            CircleAvatar(
+                              backgroundImage:
+                              NetworkImage("https://ribsandburgers.com"
+                                  "/au/wp-content/uploads/2019/03/"
+                                  "2-angus-bacon-and-cheese.jpg"),
+                            ),
+
+                            SizedBox(
+                              width: 16,
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "${user.first_name} ${user.last_name}",
+                                  "${user.firstName} ${user.lastName}",
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20),
@@ -72,7 +69,7 @@ class _UserScreenState extends State<UserScreen> {
                                     style: textStyle),
                                 Text("title: ${user.title}",
                                     style: textStyle),
-                                Text("Job Type: ${user.job_type}",
+                                Text("Job Type: ${user.jobType}",
                                     style: textStyle),
                                 Text("mobile: ${user.mobile}",
                                     style: textStyle),
@@ -114,29 +111,29 @@ class _UserScreenState extends State<UserScreen> {
 
 
 class User{
-  String first_name;
-  String last_name;
+  String firstName;
+  String lastName;
   String email;
   String title;
-  String job_type;
+  String jobType;
   String mobile;
 
   User({
-    required this.first_name,
-    required this.last_name,
+    required this.firstName,
+    required this.lastName,
     required this.email,
     required this.title,
-    required this.job_type,
+    required this.jobType,
     required this.mobile
 });
 
   factory User.fromJson(Map<String, dynamic> jsonData){
     return User(
-      first_name: jsonData['first_name'],
-      last_name: jsonData['last_name'],
+      firstName: jsonData['first_name'],
+      lastName: jsonData['last_name'],
       email: jsonData['email'],
       title: jsonData['title'],
-      job_type: jsonData['job_type'],
+      jobType: jsonData['job_type'],
       mobile: jsonData['mobile']
     );
   }
