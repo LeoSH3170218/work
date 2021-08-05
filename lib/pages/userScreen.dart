@@ -41,9 +41,7 @@ class _UserScreenState extends State<UserScreen> {
                       border: Border.all(color: Colors.grey),
                     ),
                     padding: EdgeInsets.only(bottom: 10),
-                    child: Column(
-                      children: [
-                        Row(
+                    child: Row(
                           children: [
                             Column(
                               children: [
@@ -65,7 +63,7 @@ class _UserScreenState extends State<UserScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Name: ${data['first_name']} "
+                                  "${data['first_name']} "
                                   "${data['last_name']}",
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
@@ -83,8 +81,7 @@ class _UserScreenState extends State<UserScreen> {
                             ),
                           ],
                         ),
-                      ],
-                    ),
+
                   );
                 });
               } else {
