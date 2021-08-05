@@ -35,7 +35,7 @@ class _UserScreenState extends State<UserScreen> {
             } else {
               if (snapShot.data != null) {
                 return ListView.builder(itemBuilder: (_, index) {
-                  var data = (snapShot.data as dynamic)['users'][index];
+                  var user = User.fromJson((snapShot.data as dynamic)['users'][index]);
                   return Container(
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey),
@@ -63,19 +63,19 @@ class _UserScreenState extends State<UserScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "${data['first_name']} "
-                                  "${data['last_name']}",
+                                  "${user.first_name} "
+                                  "${user.last_name}",
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20),
                                 ),
-                                Text('email: ${data["email"]}',
+                                Text('email: ${user.email}',
                                     style: textStyle),
-                                Text("title: ${data['title']}",
+                                Text("title: ${user.title}",
                                     style: textStyle),
-                                Text("Job Type: ${data['job_type']}",
+                                Text("Job Type: ${user.job_type}",
                                     style: textStyle),
-                                Text("mobile: ${data['mobile']}",
+                                Text("mobile: ${user.mobile}",
                                     style: textStyle),
                               ],
                             ),
@@ -111,4 +111,34 @@ class _UserScreenState extends State<UserScreen> {
     fontSize: 16,
     height: 1.8,
   );
+}
+
+
+class User{
+  String first_name;
+  String last_name;
+  String email;
+  String title;
+  String job_type;
+  String mobile;
+
+  User({
+    required this.first_name,
+    required this.last_name,
+    required this.email,
+    required this.title,
+    required this.job_type,
+    required this.mobile
+});
+
+  factory User.fromJson(Map<String, dynamic> jsonData){
+    return User(
+      first_name: jsonData['first_name'],
+      last_name: jsonData['last_name'],
+      email: jsonData['email'],
+      title: jsonData['title'],
+      job_type: jsonData['job_type'],
+      mobile: jsonData['mobile']
+    );
+  }
 }
