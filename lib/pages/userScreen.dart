@@ -47,6 +47,9 @@ class _UserScreenState extends State<UserScreen> {
                           children: [
                             Column(
                               children: [
+                                SizedBox(
+                                  width: 60,
+                                ),
                                 CircleAvatar(
                                   backgroundImage:
                                       NetworkImage("https://ribsandburgers.com"
