@@ -63,8 +63,7 @@ class _UserScreenState extends State<UserScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "${user.first_name} "
-                                  "${user.last_name}",
+                                  "${user.first_name} ${user.last_name}",
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20),
